@@ -6,8 +6,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.enlaps.m.and.t1.R;
+import com.enlaps.m.and.t1.network.TwitterClient;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -26,6 +28,17 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        init();
+        verifyInternet();
     }
 
+    protected void init() {
+    }
+
+    protected void verifyInternet() {
+        if(false == TwitterClient.checkInternet(this)) {
+            Toast.makeText( this, this.getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
+        }
+    }
 }
